@@ -11,6 +11,16 @@ module Api
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 
+    # cookies and sessions
+
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+
+
+    # This attribute is used to prevent cross-site request forgery (CSRF) attacks by limiting the scope of cookies to the same site that set them. A strict value means that cookies will only be sent in first-party contexts, i.e., when the user is on the same site as the server that set the cookie. This provides the strongest level of protection against CSRF attacks.
+
+    config.action_dispatch.cookies_same_site_protection = :strict
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
