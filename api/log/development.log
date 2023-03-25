@@ -1,0 +1,192 @@
+Started GET "/login" for ::1 at 2023-03-22 10:34:10 +0300
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+Started GET "/" for ::1 at 2023-03-22 10:34:18 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /usr/share/rvm/gems/ruby-2.7.4/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /usr/share/rvm/gems/ruby-2.7.4/gems/railties-7.0.4.3/lib/rails/templates/rails/welcome/index.html.erb (Duration: 8.4ms | Allocations: 458)
+Completed 200 OK in 34ms (Views: 11.3ms | ActiveRecord: 0.0ms | Allocations: 3888)
+
+
+  [1m[35m (4.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20230322074127)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "username" varchar NOT NULL, "email" varchar NOT NULL, "password_digest" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20230322074127"]]
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2023-03-22 07:53:07.011356"], ["updated_at", "2023-03-22 07:53:07.011356"]]
+  [1m[36mTRANSACTION (4.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:24:40 +0300
+  
+SyntaxError (/home/jeff/Development/code/Phase4/lessons/just_trains/api/config/routes.rb:7: syntax error, unexpected string literal, expecting `do' or '{' or '('
+  post "/users" , to "user#register"
+                     ^
+):
+  
+config/routes.rb:7: syntax error, unexpected string literal, expecting `do' or '{' or '('
+config/routes.rb:7: syntax error, unexpected string literal, expecting `do' or '{' or '('
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:25:07 +0300
+  
+SyntaxError (/home/jeff/Development/code/Phase4/lessons/just_trains/api/config/routes.rb:7: syntax error, unexpected string literal, expecting `do' or '{' or '('
+  POST "/users" , to "user#register"
+                     ^
+):
+  
+config/routes.rb:7: syntax error, unexpected string literal, expecting `do' or '{' or '('
+config/routes.rb:7: syntax error, unexpected string literal, expecting `do' or '{' or '('
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:26:26 +0300
+  
+SyntaxError (/home/jeff/Development/code/Phase4/lessons/just_trains/api/config/routes.rb:8: syntax error, unexpected string literal, expecting `do' or '{' or '('
+  post "/users", to "users#register"
+                    ^
+):
+  
+config/routes.rb:8: syntax error, unexpected string literal, expecting `do' or '{' or '('
+config/routes.rb:8: syntax error, unexpected string literal, expecting `do' or '{' or '('
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:26:50 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+SyntaxError (/home/jeff/Development/code/Phase4/lessons/just_trains/api/app/controllers/application_controller.rb:2: syntax error, unexpected integer literal, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR
+...ssage: "success" , status: :200 , data: nil)
+...                            ^~~
+/home/jeff/Development/code/Phase4/lessons/just_trains/api/app/controllers/application_controller.rb:6: circular argument reference - status
+/home/jeff/Development/code/Phase4/lessons/just_trains/api/app/controllers/application_controller.rb:9: syntax error, unexpected `end', expecting end-of-input
+  end
+  ^~~
+):
+  
+app/controllers/application_controller.rb:2: syntax error, unexpected integer literal, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR
+app/controllers/application_controller.rb:6: circular argument reference - status
+app/controllers/application_controller.rb:9: syntax error, unexpected `end', expecting end-of-input
+app/controllers/application_controller.rb:2: syntax error, unexpected integer literal, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR
+app/controllers/application_controller.rb:6: circular argument reference - status
+app/controllers/application_controller.rb:9: syntax error, unexpected `end', expecting end-of-input
+app/controllers/users_controller.rb:1:in `<main>'
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:34:23 +0300
+  
+SyntaxError (/home/jeff/Development/code/Phase4/lessons/just_trains/api/app/controllers/application_controller.rb:2: syntax error, unexpected integer literal, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR
+...ssage: "success" , status: :200 , data: nil)
+...                            ^~~
+/home/jeff/Development/code/Phase4/lessons/just_trains/api/app/controllers/application_controller.rb:6: circular argument reference - status
+/home/jeff/Development/code/Phase4/lessons/just_trains/api/app/controllers/application_controller.rb:8: syntax error, unexpected `end', expecting end-of-input
+  end
+  ^~~
+):
+  
+app/controllers/application_controller.rb:2: syntax error, unexpected integer literal, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR
+app/controllers/application_controller.rb:6: circular argument reference - status
+app/controllers/application_controller.rb:8: syntax error, unexpected `end', expecting end-of-input
+app/controllers/application_controller.rb:2: syntax error, unexpected integer literal, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR
+app/controllers/application_controller.rb:6: circular argument reference - status
+app/controllers/application_controller.rb:8: syntax error, unexpected `end', expecting end-of-input
+app/controllers/users_controller.rb:1:in `<main>'
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:35:16 +0300
+  
+SyntaxError (/home/jeff/Development/code/Phase4/lessons/just_trains/api/app/controllers/application_controller.rb:2: syntax error, unexpected integer literal, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR
+...ssage: "success" , status: :200 , data: nil)
+...                            ^~~
+/home/jeff/Development/code/Phase4/lessons/just_trains/api/app/controllers/application_controller.rb:6: circular argument reference - status
+/home/jeff/Development/code/Phase4/lessons/just_trains/api/app/controllers/application_controller.rb:9: syntax error, unexpected `end', expecting end-of-input):
+  
+app/controllers/application_controller.rb:2: syntax error, unexpected integer literal, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR
+app/controllers/application_controller.rb:6: circular argument reference - status
+app/controllers/application_controller.rb:9: syntax error, unexpected `end', expecting end-of-input
+app/controllers/application_controller.rb:2: syntax error, unexpected integer literal, expecting literal content or terminator or tSTRING_DBEG or tSTRING_DVAR
+app/controllers/application_controller.rb:6: circular argument reference - status
+app/controllers/application_controller.rb:9: syntax error, unexpected `end', expecting end-of-input
+app/controllers/users_controller.rb:1:in `<main>'
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:36:21 +0300
+  
+LoadError (cannot load such file -- bcrypt):
+  
+app/models/user.rb:3:in `<class:User>'
+app/models/user.rb:1:in `<main>'
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:36:40 +0300
+  
+LoadError (cannot load such file -- bcrypt):
+  
+app/models/user.rb:3:in `<class:User>'
+app/models/user.rb:1:in `<main>'
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:41:01 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#register as */*
+  Parameters: {"username"=>"Jeff Maina", "email"=>"jeffmaina@gmail.com", "password"=>"[FILTERED]", "user"=>{"username"=>"Jeff Maina", "email"=>"jeffmaina@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: register, request: #<ActionDispatch::Request:0x00007f2504b6a550>, params: {"username"=>"Jeff Maina", "email"=>"jeffmaina@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"register", "user"=>{"username"=>"Jeff Maina", "email"=>"jeffmaina@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Jeff Maina"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "jeffmaina@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Jeff Maina"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `register'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "jeffmaina@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `register'
+Completed 422 Unprocessable Entity in 692ms (Views: 0.7ms | ActiveRecord: 4.5ms | Allocations: 43305)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:48:02 +0300
+Error occurred while parsing request parameters.
+Contents:
+
+{
+ "username": "Jeff",
+ "email": "jeffmaina@gmail.com",
+ }
+Processing by UsersController#register as */*
+Completed 400 Bad Request in 1ms (Allocations: 124)
+
+
+  
+ActionDispatch::Http::Parameters::ParseError (Error occurred while parsing request parameters):
+  
+app/controllers/users_controller.rb:21:in `user_params'
+app/controllers/users_controller.rb:4:in `register'
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:48:38 +0300
+Processing by UsersController#register as */*
+  Parameters: {"username"=>"Jeff", "email"=>"jeffmaina@gmail.com", "password"=>"[FILTERED]", "user"=>{"username"=>"Jeff", "email"=>"jeffmaina@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: register, request: #<ActionDispatch::Request:0x00007f24fc00d6d8>, params: {"username"=>"Jeff", "email"=>"jeffmaina@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"register", "user"=>{"username"=>"Jeff", "email"=>"jeffmaina@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Jeff"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "jeffmaina@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Jeff"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `register'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "jeffmaina@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `register'
+Completed 422 Unprocessable Entity in 621ms (Views: 0.5ms | ActiveRecord: 2.4ms | Allocations: 4510)
+
+
+Started POST "/users" for 127.0.0.1 at 2023-03-22 11:48:45 +0300
+Processing by UsersController#register as */*
+  Parameters: {"username"=>"Jeffggg", "email"=>"jeffmaina@gmail.com", "password"=>"[FILTERED]", "user"=>{"username"=>"Jeffggg", "email"=>"jeffmaina@gmail.com"}}
+[31mUnpermitted parameter: :user. Context: { controller: UsersController, action: register, request: #<ActionDispatch::Request:0x00007f25048d5998>, params: {"username"=>"Jeffggg", "email"=>"jeffmaina@gmail.com", "password"=>"[FILTERED]", "controller"=>"users", "action"=>"register", "user"=>{"username"=>"Jeffggg", "email"=>"jeffmaina@gmail.com"}} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? LIMIT ?[0m  [["username", "Jeffggg"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "jeffmaina@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Create (2.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["username", "Jeffggg"], ["email", "jeffmaina@gmail.com"], ["password_digest", "[FILTERED]"], ["created_at", "2023-03-22 08:48:45.869215"], ["updated_at", "2023-03-22 08:48:45.869215"]]
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:4:in `register'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = ? AND "users"."id" != ? LIMIT ?[0m  [["username", "Jeffggg"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `register'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? AND "users"."id" != ? LIMIT ?[0m  [["email", "jeffmaina@gmail.com"], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:5:in `register'
+Completed 201 Created in 475ms (Views: 0.8ms | ActiveRecord: 7.1ms | Allocations: 4708)
+
+
