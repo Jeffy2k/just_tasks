@@ -1,6 +1,13 @@
 
 :root{
-
+  --main-body-bg: #21212d;
+  --border-color: #e7e8ee;
+  --nav-bg: #2c2c38; 
+  --buttons-bg: #645fc7;
+  --nav-text-color: #4e5668;
+  --main-body-text-color: #e7e8ee;
+  --column-bg: #23252e;
+  --alert-text: #645fc7;
 }
 
 body{
