@@ -7,7 +7,7 @@ class UsersController < ApplicationController
             save_user(user.id)
             app_response(message: 'Registration was successful', status: :created, data: user)
         else
-            app_response(message: 'Something went wrong during registration', status: :unprocessable_entity, data: user.errors)
+            app_response(message: 'Something went wrong during registration', status: :unprocessable_entity, data: user.errors.full_messages)
         end
     end
 
@@ -18,7 +18,8 @@ class UsersController < ApplicationController
             save_user(user.id)
             app_response(message: 'Login was successful', status: :ok, data: user)
         else
-            app_response(message: 'Invalid username/email or password', status: :unauthorized)
+            app_response(message: 'Invalid username/email or password', status: :unauthorized
+            )
         end
     end
 

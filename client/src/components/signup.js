@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import "../styles/form.css";
 
 function SignupForm() {
-
   const [isSignedUp, setIsSignedUp] = useState(false);
-
+  const [registered, setRegistered] = useState(false);
 
   // password visibility
 
@@ -20,14 +19,17 @@ function SignupForm() {
     } else setVisible(false);
   }
 
-
   //   confirmation password visibility
 
+  const [isPasswordConfirmationVisible, setConfirmatioVisible] =
+    useState(false);
 
-  const [isPasswordConfirmationVisible, setConfirmatioVisible] = useState(false);
-
-  let confirmation_visibility_icon = isPasswordConfirmationVisible ? "visibility_off" : "visibility";
-  let confirmation_input_type = isPasswordConfirmationVisible ? "text" : "password";
+  let confirmation_visibility_icon = isPasswordConfirmationVisible
+    ? "visibility_off"
+    : "visibility";
+  let confirmation_input_type = isPasswordConfirmationVisible
+    ? "text"
+    : "password";
 
   function toggleConfirmationPasswordVisibilty() {
     if (!isPasswordConfirmationVisible) {
@@ -37,11 +39,10 @@ function SignupForm() {
 
   // input states
 
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-
 
   let handleNameInput = (name) => {
     setName(name);
@@ -60,19 +61,93 @@ function SignupForm() {
   };
 
 
-  let handleSignUp = () => {
-    console.log({
-      name: name,
-      email: email,
-      password: password,
-      confirmation: passwordConfirmation
-    });
 
-    if(password !== passwordConfirmation) {
-        document.getElementById('password-error').style.visibility = 'visible';
+  // HANDLE SIGNING UP
+
+
+
+
+  let handleSignUp = () => {
+
+    let userObj = {
+      username,
+      email,
+      password,
+    };
+
+    if (password !== passwordConfirmation) {
+      document.getElementById("password-error").style.visibility = "visible";
+    } else {
+      setIsSignedUp(true);
+      fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userObj),
+      }).then((response) => {
+        if (response.ok) {
+          setIsSignedUp(false)
+          setRegistered(true)
+        } 
+        else if (!response.ok)
+        {
+          setIsSignedUp(false)
+          return response.json().then((error) => {
+
+            console.error(error);
+
+            let errorMessage;
+
+            if(error.data.length === 1){
+                 errorMessage = error.data[0]
+                 if(errorMessage.includes("Email"))
+                 {
+                  document.getElementById("email-error-container").innerHTML = errorMessage
+                 }
+                 else if(errorMessage.includes("Username")){
+                  document.getElementById("name-error-container").innerHTML = errorMessage
+                  }
+             }
+            else
+             if(error.data.length > 1){
+                  let password_err = '';
+                  let username_err = '';
+                  let email_err = '';
+                   error.data.map((errMsg)=>{
+                    if(errMsg.includes("Username")){
+                      return username_err = errMsg;
+                    }
+                    if(errMsg.includes("Email")){
+                     return email_err = errMsg;
+                    }
+                   if(errMsg.includes("Password")){
+                     return password_err = errMsg;
+                    }
+                   })
+                   document.getElementById("email-error-container").innerHTML = email_err;
+                   document.getElementById("name-error-container").innerHTML = username_err;
+                   document.getElementById("password-error-container").innerHTML = password_err;
+
+               }
+          });
+        }
+      });
     }
-    setIsSignedUp(true);
   };
+
+
+  // if registered redirect to login page
+
+  if(registered){
+    return <Redirect exact to="/" />
+  }
+
+
+  // REMOVE ERROR MESSAGE
+
+  let removeErrorMessage = (id) => {
+    document.getElementById(`${id}`).innerHTML = '';
+  }
+
 
   return (
     <main className="form-container">
@@ -82,11 +157,12 @@ function SignupForm() {
         <div className="form-group">
           <input
             onChange={(e) => {
+              removeErrorMessage("name-error-container")
               handleNameInput(e.target.value);
             }}
             type="text"
             name="name"
-            value={name}
+            value={username}
             placeholder="..."
             required
           />
@@ -95,12 +171,13 @@ function SignupForm() {
           </label>
           <div className="verification-icon-cont"></div>
           <div className="error-msg-container">
-            <h6>Invalid email address</h6>
+            <h6 id="name-error-container"></h6>
           </div>
         </div>
         <div className="form-group">
           <input
             onChange={(e) => {
+              removeErrorMessage("email-error-container")
               handleEmailInput(e.target.value);
             }}
             type="email"
@@ -114,12 +191,13 @@ function SignupForm() {
           </label>
           <div className="verification-icon-cont"></div>
           <div className="error-msg-container">
-            <h6>Invalid name</h6>
+            <h6 id="email-error-container"></h6>
           </div>
         </div>
         <div className="form-group">
           <input
             onChange={(e) => {
+              removeErrorMessage("password-error-container")
               handlePasswordInput(e.target.value);
             }}
             type={input_type}
@@ -137,15 +215,16 @@ function SignupForm() {
             }}
             className="visibility-icon-cont"
           >
-           <i className="material-icons">{visibility_icon}</i>
+            <i className="material-icons">{visibility_icon}</i>
           </div>
           <div className="error-msg-container">
-            <h6>invalid password</h6>
+            <h6 id="password-error-container"></h6>
           </div>
         </div>
-      <div className="form-group">
+        <div className="form-group">
           <input
             onChange={(e) => {
+              removeErrorMessage("confirm-pass-error")
               handlePasswordConfirmationInput(e.target.value);
             }}
             type={confirmation_input_type}
@@ -159,19 +238,19 @@ function SignupForm() {
           </label>
           <div
             onClick={() => {
-                toggleConfirmationPasswordVisibilty();
+              toggleConfirmationPasswordVisibilty();
             }}
             className="visibility-icon-cont"
           >
             <i className="material-icons">{confirmation_visibility_icon}</i>
           </div>
           <div id="password-error">
-            <h6>Password does not match</h6>
+            <h6 id="confirm-pass-error">Password does not match</h6>
           </div>
         </div>
         <div className="checkbox-container">
-            <input type="checkbox" required/>
-            <h5>I Agree with privacy and policy</h5>
+          <input type="checkbox" required />
+          <h5>I Agree with privacy and policy</h5>
         </div>
         <button
           onClick={(e) => {
@@ -189,8 +268,9 @@ function SignupForm() {
             </div>
           )}
         </button>
-        <h4 className="redirect-msg">Already have an account?
-          <NavLink className="span" eaxact to='/'>
+        <h4 className="redirect-msg">
+          Already have an account?
+          <NavLink className="span" exact to="/">
             <span>Sign in</span>
           </NavLink>
         </h4>
