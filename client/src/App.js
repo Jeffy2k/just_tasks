@@ -1,5 +1,6 @@
 import { Switch, Route } from "react-router-dom";
 import "./App.css";
+import Dashboard from "./components/dashboard";
 import LoginForm from "./components/login";
 import SignupForm from "./components/signup";
 
@@ -12,6 +13,9 @@ function App() {
         </Route>
         <Route exact path="/signup">
           <SignupForm />
+        </Route>
+        <Route exact path="/dashboard">
+          <Dashboard/>
         </Route>
       </Switch>
     </div>
