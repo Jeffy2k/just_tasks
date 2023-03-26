@@ -51,7 +51,7 @@ function Dashboard() {
 
     setTimeout(() => {
       document.querySelector(`#${id}`).classList.toggle("active");
-    }, 10000);
+    }, 2500);
   };
 
   /*remove error using close icon*/
