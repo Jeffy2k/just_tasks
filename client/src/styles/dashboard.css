@@ -20,17 +20,12 @@
 }
 
 .col-body .row-nav {
+  position: relative;
   width: 100%;
   height: calc(10% - 1px);
   background-color: var(--nav-bg);
   border: none;
   border-bottom: 1px solid var(--border-color);
-}
-
-.col-body .row-body {
-  width: 100%;
-  background-color: var(--main-body-bg);
-  flex-grow: 2;
 }
 
 .col-nav {
@@ -207,31 +202,36 @@ width: 1em;
 
 
 
+
 /* ADD NEW BOARD FORM */
 
 
-#add-board-form {
+
+.crud-form{
   position: absolute;
   width: 100%;
-  height: 100%;
-  /* background-color: rgb(47, 53, 69, 0.5);
+  height: 100%; 
+  justify-content: center;
+  align-items: center;
+  display: flex;
+    /* background-color: rgb(47, 53, 69, 0.5);
   background: rgba(255, 255, 255 , 0);
   backdrop-filter: blur(0px);
   -webkit-backdrop-filter: blur(1px); */
-  display: flex;
-  z-index: -1;
-  justify-content: center;
-  align-items: center;
 }
 
-#add-board-form form {
+.crud-form form{
   position: relative;
   width: 25%;
   height: auto;
   background-color: #181822;
 }
 
-#add-board-form form .dash-form-title {
+#add-board-form {
+  z-index: -1;
+}
+
+.dash-form-title {
   color: var(--main-body-text-color);
   margin-left: 20px;
 }
@@ -306,10 +306,11 @@ cursor: pointer;
 #board-status-messages{
   position: absolute;
   height: auto;
-  bottom: 60px;
-  right: 60px;
+  top: 20px;
+  right: 50%;
   height: 2.5em;
   width: 20em;
+  transform: translate(50%, 0%);
 }
 
 .notification{
@@ -373,6 +374,42 @@ cursor: pointer;
 .active{
   opacity: 1;
 }
+
+/* add new task form */
+
+#add-task-form {
+  z-index: -1;
+}
+
+.dash-form-group select{
+  margin-top: 11px;
+  width: 105%;
+  margin-left: 2px;
+  background-color: transparent;
+  color: #acacac;
+  font-size: 16px;
+  padding: 8px 4px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+}
+
+select:focus option{
+  outline: none;
+  border: none;
+}
+
+ option{
+  background-color: #181822 !important;
+  outline: none !important;
+  border: none !important;
+}
+
+.dash-label-normal {
+  color: #aeaeae;
+  margin-left: 5px;
+}
+
 
 
 

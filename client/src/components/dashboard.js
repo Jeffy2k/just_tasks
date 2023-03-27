@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import "../styles/dashboard.css";
+import DashboardBody from "./dashboardbody";
+import NewBoardForm from "./newboardform";
+import NewTaskForm from "./newtaskform";
 
 function Dashboard() {
+  //   CRUD FORMS
 
-
-  //   ADD BOARD FORM
+  /*                      ADD BOARD                                      */
 
   const [isAddBoardFormActive, setAddBoardFormActive] = useState(false);
 
@@ -17,6 +20,23 @@ function Dashboard() {
       setAddBoardFormActive(false);
     }
   };
+
+
+    /*                      ADD BOARD                                      */
+
+  const [isAddTaskFormActive, setAddTaskFormActive] = useState(false);
+
+  let toggleTaskForm = () => {
+    if (!isAddTaskFormActive) {
+      document.getElementById("add-task-form").style.zIndex = "999";
+      setAddTaskFormActive(true);
+    } else {
+      document.getElementById("add-task-form").style.zIndex = "-1";
+      setAddTaskFormActive(false);
+    }
+  };
+
+
 
   // NEW PROJECT CREATION
 
@@ -140,56 +160,10 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <div className="col-body">
-        <div className="row-nav"></div>
-        <div className="row-body"></div>
-      </div>
 
+      <DashboardBody toggleTaskForm = {toggleTaskForm}/>
       {/* add board popup */}
-      <div
-        onClick={(e) => {
-          toggleAddBoardForm();
-        }}
-        id="add-board-form"
-      >
-        <form
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
-          <i
-            onClick={() => {
-              toggleAddBoardForm();
-            }}
-            id="form-close-icon"
-            className="material-icons"
-          >
-            close
-          </i>
-          <h3 className="dash-form-title">Add Board</h3>
-          <div className="dash-form-group">
-            <input
-              onChange={(e) => {
-                setBoardName(e.target.value);
-              }}
-              id="board-name-input"
-              type="text"
-              placeholder="..."
-              value={boardName}
-            />
-            <label className="dash-form-label">Title</label>
-          </div>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              handleBoardName();
-            }}
-            className="dash-form-button"
-          >
-            Add
-          </button>
-        </form>
-      </div>
+      <NewBoardForm toggleAddBoardForm={toggleAddBoardForm} handleBoardName = {handleBoardName} setBoardName = {setBoardName} boardName = {boardName}/>
       <div id="board-status-messages">
         <div className="notification inactive" id="board-success-notification">
           <h4>Board created successfully</h4>
@@ -216,6 +190,7 @@ function Dashboard() {
           </i>
         </div>
       </div>
+      <NewTaskForm toggleTaskForm = {toggleTaskForm}/>
     </div>
   );
 }

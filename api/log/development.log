@@ -1693,3 +1693,8 @@ Processing by UsersController#login as */*
 Completed 200 OK in 283ms (Views: 0.4ms | ActiveRecord: 0.3ms | Allocations: 1279)
 
 
+Started PATCH "/powers/2" for 127.0.0.1 at 2023-03-26 21:16:23 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [PATCH] "/powers/2"):
+  
