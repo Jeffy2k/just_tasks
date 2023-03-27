@@ -1,35 +1,26 @@
+import { useEffect } from "react";
 import "../styles/dashboardbody.css";
+import Draggable from "./draggable";
 
 function DashboardBody({ toggleTaskForm }) {
-
-
-  //  Dragging and dropping logic
-
-  let startDragging = (draggable) => {
-    draggable.classList.add("dragging");
-  };
-
-  let endDragging = (draggable) => {
-    draggable.classList.remove("dragging");
-  };
+const tasks = [{ title: "task1", description: "task `1 description" },{ title: "task1", description: "task `1 description" },{ title: "task1", description: "task `1 description" },{ title: "task1", description: "task `1 description" }];
 
   let draggingOver = (e) => {
     e.preventDefault();
     const container = e.target;
     const container_parent = container.parentNode;
     let classList = container.classList.value;
-    if(classList === "row-dnd"){
-      console.log(container)
-    const afterElement = getDragAfterElement(container, e.clientY);
-    const draggable = document.querySelector(".dragging");
-    console.log(container);
-    if (afterElement == null) {
-      container.appendChild(draggable);
-    } else {
-      container.insertBefore(draggable, afterElement);
-    }
-  }
-    else if(classList === "dragging"){
+    if (classList === "row-dnd") {
+      console.log(container);
+      const afterElement = getDragAfterElement(container, e.clientY);
+      const draggable = document.querySelector(".dragging");
+      console.log(container);
+      if (afterElement == null) {
+        container.appendChild(draggable);
+      } else {
+        container.insertBefore(draggable, afterElement);
+      }
+    } else if (classList === "dragging") {
       const afterElement = getDragAfterElement(container_parent, e.clientY);
       const draggable = document.querySelector(".dragging");
       console.log(container_parent);
@@ -39,7 +30,7 @@ function DashboardBody({ toggleTaskForm }) {
         container_parent.insertBefore(draggable, afterElement);
       }
     }
-  }
+  };
 
   function getDragAfterElement(container, y) {
     const draggableElements = [
@@ -59,7 +50,16 @@ function DashboardBody({ toggleTaskForm }) {
       { offset: Number.NEGATIVE_INFINITY }
     ).element;
   }
-  
+
+  // fetching values
+
+  useEffect(() => {
+    fetch("https://just-tasks-api.onrender.com/todos/all")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  });
 
   return (
     <div className="col-body">
@@ -82,228 +82,44 @@ function DashboardBody({ toggleTaskForm }) {
         </div>
       </div>
       <div className="row-body">
-        <div onDragOver={(e)=>{
-          draggingOver(e)
-        }} id="todo-col" className="body-col">
+        <div
+          onDragOver={(e) => {
+            draggingOver(e);
+          }}
+          id="todo-col"
+          className="body-col"
+        >
           <div className="status-row">
             <div id="status-todo" className="status-drop"></div>
             <h4>Todo ( 4 )</h4>
           </div>
-          <div className="row-dnd">
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task 1</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task 2</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task 3</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
+          <div id="todo-dnd-col" className="row-dnd">
           </div>
         </div>
-        <div onDragOver={(e)=>{
-          draggingOver(e)
-        }} className="body-col">
+        <div
+          onDragOver={(e) => {
+            draggingOver(e);
+          }}
+          className="body-col"
+        >
           <div className="status-row">
             <div id="status-progress" className="status-drop"></div>
             <h4>In Progress ( 4 )</h4>
           </div>
-          <div className="row-dnd">
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task 4</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
+          <div id="progress-dnd-col" className="row-dnd">
           </div>
         </div>
-        <div onDragOver={(e)=>{
-          draggingOver(e)
-        }} className="body-col">
+        <div
+          onDragOver={(e) => {
+            draggingOver(e);
+          }}
+          className="body-col"
+        >
           <div className="status-row">
             <div id="status-done" className="status-drop"></div>
             <h4>Done ( 4 )</h4>
           </div>
-          <div className="row-dnd">
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task</h4>
-              <p>some very long description coz i canafbqhwavj</p></div>{" "}
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
-            <div
-              onDragStart={(e) => {
-                startDragging(e.target);
-              }}
-              onDragEnd={(e) => {
-                endDragging(e.target);
-              }}
-              id="draggable"
-              draggable="true"
-            >
-              <h4>Some random task</h4>
-              <p>some very long description coz i canafbqhwavj</p>
-            </div>
+          <div id="done-dnd-col" className="row-dnd">
           </div>
         </div>
         <button

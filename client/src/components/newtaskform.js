@@ -1,4 +1,48 @@
+import { useState } from 'react'
+import Draggable from './draggable';
+
 function NewTaskForm({toggleTaskForm}) {
+
+
+  // task states
+
+  const[title, setTitle] = useState("");
+  const[description, setDescription] = useState("");
+  const[status, setStatus] = useState("");
+  const[priority, setPriority] = useState(0);
+
+  let handleTitle = (e) => {
+    setTitle(e.target.value)
+  };
+  let handleDescription = (e) => {
+    setDescription(e.target.value)
+  };
+  let handleStatus = (e) => {
+    setStatus(e.target.value)
+  };
+  let handlePriority = (e) => {
+    setPriority(e.target.value)
+  };
+
+  let handleAddingTasks = () => {
+
+    let todoColumn = document.querySelector("#todo-dnd-col");
+    let inprogressColumn = document.querySelector("#progress-dnd-col");
+    let doneColumn = document.querySelector("#done-dnd-col");
+
+
+    // console.log(todoColumn,inprogressColumn,doneColumn)
+
+    let taskobj = {
+      title,
+      description,
+      status,
+      priority
+    }
+  
+    todoColumn.appendChild(<Draggable/>)
+  }
+
     return ( 
         <div 
         onClick={(e) => {
@@ -24,25 +68,31 @@ function NewTaskForm({toggleTaskForm}) {
           <h3 className="dash-form-title">Add New Task</h3>
           <div className="dash-form-group">
             <input
-              onChange={(e) => {}}
+              onChange={(e) => {
+                handleTitle(e)
+              }}
               id="board-name-input"
               type="text"
               placeholder="..."
+              value={title}
             />
             <label className="dash-form-label">Title</label>
           </div>{" "}
           <div className="dash-form-group">
             <input
-              onChange={(e) => {}}
+              onChange={(e) => {
+                handleDescription(e)
+              }}
               id="board-name-input"
               type="text"
               placeholder="..."
+              value={description}
             />
             <label className="dash-form-label">Description</label>
           </div>
           <div className="dash-form-group">
           <label className="dash-label-normal">Status</label>
-            <select>
+            <select onChange={(e)=>{handleStatus(e)}}>
               <option>Todo</option>
               <option>In Progress</option>
               <option>Done</option>
@@ -50,7 +100,7 @@ function NewTaskForm({toggleTaskForm}) {
           </div>
           <div className="dash-form-group">
           <label className="dash-label-normal">Priority</label>
-            <select>
+            <select onChange={(e)=>{handlePriority(e)}}>
               <option>01</option>
               <option>02</option>
               <option>03</option>
@@ -65,6 +115,8 @@ function NewTaskForm({toggleTaskForm}) {
           </div>
           <button
             onClick={(e) => {
+              e.preventDefault();
+              handleAddingTasks()
             }}
             className="dash-form-button"
           >

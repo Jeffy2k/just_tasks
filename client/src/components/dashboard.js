@@ -104,42 +104,6 @@ function Dashboard() {
               <i className="material-symbols-outlined">view_kanban</i>
               <h5>Roadmap</h5>
             </div>
-            <div className="board">
-              <i className="material-symbols-outlined">view_kanban</i>
-              <h5>Project</h5>
-            </div>
-            <div className="board">
-              <i className="material-symbols-outlined">view_kanban</i>
-              <h5>Presentation</h5>
-            </div>
-            <div className="board">
-              <i className="material-symbols-outlined">view_kanban</i>
-              <h5>Presentation</h5>
-            </div>{" "}
-            <div className="board">
-              <i className="material-symbols-outlined">view_kanban</i>
-              <h5>Presentation</h5>
-            </div>{" "}
-            <div className="board">
-              <i className="material-symbols-outlined">view_kanban</i>
-              <h5>Presentation</h5>
-            </div>{" "}
-            <div className="board">
-              <i className="material-symbols-outlined">view_kanban</i>
-              <h5>Presentation</h5>
-            </div>{" "}
-            <div className="board">
-              <i className="material-symbols-outlined">view_kanban</i>
-              <h5>Presentation</h5>
-            </div>{" "}
-            <div className="board">
-              <i className="material-symbols-outlined">view_kanban</i>
-              <h5>Presentation</h5>
-            </div>{" "}
-            <div className="board">
-              <i className="material-symbols-outlined">view_kanban</i>
-              <h5>Presentation</h5>
-            </div>
           </div>
           <div
             onClick={() => {
